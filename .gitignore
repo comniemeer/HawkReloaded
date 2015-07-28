@@ -1,15 +1,67 @@
-# Eclipse stuff
-.classpath
-.project
-.settings
+############
+## Eclipse
+############
 
-# Build files
-/target
-/build
-/bin
-/dist
+# Generic project files
+.project
+.classpath
+.settings/
+bin/
+build/
+dist/
 manifest.mf
+
+*.pydevproject
+.metadata
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
+
+############
+## IntelliJ
+############
+
+*.iml
+*.ipr
+*.iws
+.idea/
+
+############
+## Maven
+############
+
+target/
+dependency-reduced-pom.xml
 build.xml
 
-# Mac filesystem dust
+############
+## Windows
+############
+
+# Windows image file caches
+Thumbs.db
+
+# Folder config file
+Desktop.ini
+
+############
+## Mac
+############
+
 .DS_Store
