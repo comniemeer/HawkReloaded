@@ -14,7 +14,7 @@ import uk.co.oliwali.HawkEye.util.Config;
  * @author oliverw92
  */
 public class PlayerSession {
-
+	
 	private CommandSender sender;
 	private List<DataEntry> searchResults = null;
 	private List<DataEntry> rollbackResults = null;
@@ -24,29 +24,31 @@ public class PlayerSession {
 	private String[] toolCommand = Config.DefaultToolCommand;
 	private boolean inPreview = false;
 	private int editspeed = Config.DefaultEditSpeed;
-
-
+	
 	public PlayerSession(CommandSender sender) {
 		this.sender = sender;
 	}
-
+	
 	public CommandSender getSender() {
 		return sender;
 	}
+	
 	public void setSender(CommandSender sender) {
 		this.sender = sender;
 	}
-
+	
 	public List<DataEntry> getSearchResults() {
 		return searchResults;
 	}
+	
 	public void setSearchResults(List<DataEntry> searchResults) {
 		this.searchResults = searchResults;
 	}
-
+	
 	public List<DataEntry> getRollbackResults() {
 		return rollbackResults;
 	}
+	
 	public void setRollbackResults(List<DataEntry> rollbackResults) {
 		this.rollbackResults = rollbackResults;
 	}
@@ -58,7 +60,7 @@ public class PlayerSession {
 	public RollbackType getRollbackType() {
 		return rollbackType;
 	}
-
+	
 	public boolean isUsingTool() {
 		return usingTool;
 	}
@@ -66,30 +68,35 @@ public class PlayerSession {
 	public void setUsingTool(boolean usingTool) {
 		this.usingTool = usingTool;
 	}
-
+	
 	public boolean doingRollback() {
 		return doingRollback;
 	}
+	
 	public void setDoingRollback(boolean doingRollback) {
 		this.doingRollback = doingRollback;
 	}
-
+	
 	public String[] getToolCommand() {
 		return toolCommand;
 	}
+	
 	public void setToolCommand(String[] toolCommand) {
 		this.toolCommand = toolCommand;
 	}
-
+	
 	public boolean isInPreview() {
 		return inPreview;
 	}
+	
 	public void setInPreview(boolean inPreview) {
 		this.inPreview = inPreview;
 	}
+	
 	public void setEditSpeed(int editspeed) {
 		this.editspeed = editspeed;
 	}
+	
 	public int getEditSpeed() {
 		return editspeed;
 	}

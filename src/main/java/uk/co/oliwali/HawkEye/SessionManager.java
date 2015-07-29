@@ -11,50 +11,55 @@ import org.bukkit.entity.Player;
  * @author oliverw92
  */
 public class SessionManager {
-
+	
 	private static final HashMap<String, PlayerSession> playerSessions = new HashMap<String, PlayerSession>();
-
+	
 	public SessionManager() {
-
-		//Add console session
-		addSession(Bukkit.getServer().getConsoleSender());
-
-        //Create player sessions
-        for (Player player : Bukkit.getServer().getOnlinePlayers()) addSession(player);
-
+		// Add console session
+		SessionManager.addSession(Bukkit.getServer().getConsoleSender());
+		
+        // Create player sessions
+        for (Player player : Bukkit.getServer().getOnlinePlayers()) {
+        	SessionManager.addSession(player);
+        }
 	}
-
+	
 	/**
 	 * Get a PlayerSession from the list
 	 */
 	public static PlayerSession getSession(CommandSender player) {
 		PlayerSession session = playerSessions.get(player.getName());
-		if (session == null)
+		
+		if (session == null) {
 			session = addSession(player);
+		}
+		
 		session.setSender(player);
+		
 		return session;
 	}
-
+	
 	/**
 	 * Adds a PlayerSession to the list
 	 */
 	public static PlayerSession addSession(CommandSender player) {
 		PlayerSession session;
-		if (playerSessions.containsKey(player.getName())) {
-			session = playerSessions.get(player.getName());
+		
+		if (SessionManager.playerSessions.containsKey(player.getName())) {
+			session = SessionManager.playerSessions.get(player.getName());
 			session.setSender(player);
-		}
-		else {
+		} else {
 			session = new PlayerSession(player);
-			playerSessions.put(player.getName(), session);
+			SessionManager.playerSessions.put(player.getName(), session);
 		}
+		
 		return session;
 	}
-
+	
 	/**
 	 * Removes a PlayerSession to avoid memory leaks
 	 */
 	public static void removeSession(CommandSender player) {
-		playerSessions.remove(player.getName());
+		SessionManager.playerSessions.remove(player.getName());
 	}
 }

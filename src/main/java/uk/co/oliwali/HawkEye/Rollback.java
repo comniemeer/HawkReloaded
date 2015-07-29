@@ -23,108 +23,111 @@ import uk.co.oliwali.HawkEye.util.Util;
  * @author oliverw92
  */
 public class Rollback implements Runnable {
-
+	
 	private final PlayerSession session;
 	private Iterator<DataEntry> rollbackQueue;
 	private final List<DataEntry> undo = new ArrayList<DataEntry>();
 	private int timerID;
 	private int speed = Config.DefaultEditSpeed;
 	private RollbackType rollbackType = RollbackType.GLOBAL;
-
+	
 	/**
 	 * @param session {@link PlayerSession} to retrieve rollback results from
 	 */
 	public Rollback(RollbackType rollbackType, PlayerSession session) {
-
 		this.rollbackType = rollbackType;
 		this.session = session;
 		this.speed = session.getEditSpeed();
-		session.setRollbackType(rollbackType);
-		rollbackQueue = session.getRollbackResults().iterator();
 		
-		//Check that we actually have results
-		if (!rollbackQueue.hasNext()) {
+		session.setRollbackType(rollbackType);
+		
+		this.rollbackQueue = session.getRollbackResults().iterator();
+		
+		// Check that we actually have results
+		if (!this.rollbackQueue.hasNext()) {
 			Util.sendMessage(session.getSender(), "&cNo results found to rollback");
 			return;
 		}
-
+		
 		Util.debug("Starting rollback of " + session.getRollbackResults().size() + " results");
-
-		//Start rollback
+		
+		// Start rollback
 		session.setDoingRollback(true);
 		Util.sendMessage(session.getSender(), "&cAttempting to rollback &7" + session.getRollbackResults().size() + "&c results");
-		timerID = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(Bukkit.getServer().getPluginManager().getPlugin("HawkEye"), this, 1, 2);
-
+		
+		this.timerID = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(Bukkit.getServer().getPluginManager().getPlugin("HawkEye"), this, 1, 2);
 	}
-
+	
 	/**
 	 * Run the rollback.
 	 * Contains appropriate methods of catching errors and notifying the player
 	 */
 	public void run() {
-
-		//Start rollback process
+		// Start rollback process
 		int i = 0;
-		while (i < speed && rollbackQueue.hasNext()) {
+		
+		while (i < this.speed && this.rollbackQueue.hasNext()) {
 			i++;
-
-			DataEntry entry = rollbackQueue.next();
-
-			//If the action can't be rolled back, skip this entry
-			if (entry.getType() == null || !entry.getType().canRollback())
+			
+			DataEntry entry = this.rollbackQueue.next();
+			
+			// If the action can't be rolled back, skip this entry
+			if (entry.getType() == null || !entry.getType().canRollback()) {
 				continue;
-
-			//If the world doesn't exist, skip this entry
+			}
+			
+			// If the world doesn't exist, skip this entry
 			World world = HawkEye.server.getWorld(entry.getWorld());
-			if (world == null)
+			
+			if (world == null) {
 				continue;
-
-			//Get some data from the entry
+			}
+			
+			// Get some data from the entry
 			Location loc = new Location(world, entry.getX(), entry.getY(), entry.getZ());
 			Block block = world.getBlockAt(loc);
 			BlockState state = block.getState();
 			
 			entry.setUndoState(state);
-				
-			//Attempt global rollback
-			if (rollbackType == RollbackType.GLOBAL && entry.rollback(world.getBlockAt(loc))) {
-				undo.add(entry);
+			
+			// Attempt global rollback
+			if (this.rollbackType == RollbackType.GLOBAL && entry.rollback(world.getBlockAt(loc))) {
+				this.undo.add(entry);
 			}
-			//Local rollback preview
-			else if (rollbackType == RollbackType.LOCAL && entry.rollbackPlayer(block, (Player)session.getSender())) {
-				undo.add(entry);
+			
+			// Local rollback preview
+			else if (this.rollbackType == RollbackType.LOCAL && entry.rollbackPlayer(block, (Player) this.session.getSender())) {
+				this.undo.add(entry);
 			}
 		}
-
-		//Check if rollback is finished
-		if (!rollbackQueue.hasNext()) {
-
-			Bukkit.getServer().getScheduler().cancelTask(timerID);
+		
+		// Check if rollback is finished
+		if (!this.rollbackQueue.hasNext()) {
+			Bukkit.getServer().getScheduler().cancelTask(this.timerID);
 			
-			Collections.reverse(undo); //Reverse the order so we properly undo the rollback!
-			session.setDoingRollback(false);
-			session.setRollbackResults(undo);
-			session.setEditSpeed(Config.DefaultEditSpeed);
-
-			//Store undo results and notify player
-			if (rollbackType == RollbackType.GLOBAL) {
-				Util.sendMessage(session.getSender(), "&cRollback complete, &7" + undo.size() + "&c edits performed");
-				Util.sendMessage(session.getSender(), "&cUndo this rollback using &7/hawk undo");
-				//Delete data if told to
+			Collections.reverse(this.undo); //Reverse the order so we properly undo the rollback!
+			this.session.setDoingRollback(false);
+			this.session.setRollbackResults(this.undo);
+			this.session.setEditSpeed(Config.DefaultEditSpeed);
+			
+			// Store undo results and notify player
+			if (this.rollbackType == RollbackType.GLOBAL) {
+				Util.sendMessage(this.session.getSender(), "&cRollback complete, &7" + this.undo.size() + "&c edits performed");
+				Util.sendMessage(this.session.getSender(), "&cUndo this rollback using &7/hawk undo");
+				
+				// Delete data if told to
 				if (Config.DeleteDataOnRollback) {
-					DataManager.deleteEntries(undo);
+					DataManager.deleteEntries(this.undo);
 				}
 			} else {
-				Util.sendMessage(session.getSender(), "&cRollback preview complete, &7" + undo.size() + "&c edits performed to you");
-				Util.sendMessage(session.getSender(), "&cType &7/hawk preview apply&c to make these changes permanent or &7/hawk preview cancel&c to cancel");
+				Util.sendMessage(this.session.getSender(), "&cRollback preview complete, &7" + undo.size() + "&c edits performed to you");
+				Util.sendMessage(this.session.getSender(), "&cType &7/hawk preview apply&c to make these changes permanent or &7/hawk preview cancel&c to cancel");
 			}
 
-			Util.debug("Rollback complete, " + undo.size() + " edits performed");
-
+			Util.debug("Rollback complete, " + this.undo.size() + " edits performed");
 		}
-
 	}
-
+	
 	public enum RollbackType {
 		GLOBAL,
 		REBUILD,
