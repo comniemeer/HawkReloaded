@@ -70,11 +70,13 @@ $(document).ready(function(){
 			var filter = {
 				actions: new Array(),
 				players: $("[name=players]").val().split(","),
+				uuids: $("[name=uuids]").val().split(","),
 				loc: new Array($("[name=x]").val(), $("[name=y]").val(), $("[name=z]").val()),
 				range: $("[name=range]").val(),
 				keywords: $("[name=keywords]").val().split(","),
 				exclude: $("[name=exclude]").val().split(","),
 				worlds: $("[name=worlds]").val().split(","),
+				servers: $("[name=servers]").val().split(","),
 				dateFrom: $("#dateFrom").val() + " " + $("#timeFrom").val(),
 				dateTo: $("#dateTo").val() + " " + $("#timeTo").val(),
 				block: $("#item").val()
@@ -109,8 +111,10 @@ $(document).ready(function(){
 								{ "sTitle": data.columns.id },
 								{ "sTitle": data.columns.date, "sWidth": "160px" },
 								{ "sTitle": data.columns.player, "bSearchable": true },
+								{ "sTitle": data.columns.uuid, "bSearchable": true },
 								{ "sTitle": data.columns.action, "bSearchable": true },
 								{ "sTitle": data.columns.world },
+								{ "sTitle": data.columns.server },
 								{ "sTitle": data.columns.xyz },
 								{ "sTitle": data.columns.data, "bSearchable": true }
 							] } );

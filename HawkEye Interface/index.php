@@ -42,7 +42,7 @@
         <script type="text/javascript" src="js/scripts.js"></script>
         <script type="text/javascript" src="js/jquery.uniform.min.js"></script>
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-
+		
         <script type="text/javascript" src="js/jquery.tools.min.js"></script>
         <link rel="stylesheet" type="text/css" href="css/styles.css" />
         <link rel="stylesheet" type="text/css" href="css/jquery-ui-timepicker.css" />
@@ -53,10 +53,8 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <title><?php echo $lang["pageTitle"]; ?></title>
     </head>
-
     
     <body>
-    
         <div class="header">
         	<div class="innerHeader">
             	<a href="https://github.com/oliverw92/HawkEye/wiki"><div class="headerText"></div></a><div class="logout"><?php if ($hawkConfig["password"] != "" && $isAuth !== true) echo '<a href="login.php?page=logout"><button>Log Out</button></a>'; ?></div>
@@ -65,7 +63,6 @@
         
         <div class="filterContainer">
             <div class="innerFilter">
-
                 <div class="subHeader">
                     <span id="filterMin" style="border-radius: 20px;" class="ui-state-default ui-corner-all minmax" title="<?php echo $lang["tips"]["hideFilter"]; ?>"><span class="ui-icon ui-icon-carat-1-se"></span></span>
                     <p><?php echo $lang["filter"]["title"]; ?></p>
@@ -128,6 +125,7 @@
                         </div>
                         <div class="parameters1">
                             <input title="<?php echo $lang["tips"]["players"]; ?>" type="text" name="players" /> <?php echo $lang["filter"]["players"]; ?><br />
+                            <input title="<?php echo $lang["tips"]["uuids"]; ?>" type="text" name="uuids" /> <?php echo $lang["filter"]["uuids"]; ?><br />
                             <input title="<?php echo $lang["tips"]["xyz"]; ?>" type="text" style="width: 60px" name="x" /><input title="<?php echo $lang["tips"]["xyz"]; ?>" type="text" style="width: 60px" name="y" /><input title="<?php echo $lang["tips"]["xyz"]; ?>" type="text" style="width: 60px" name="z"/> <?php echo $lang["filter"]["xyz"]; ?><br />
                             <input title="<?php echo $lang["tips"]["range"]; ?>" type="text" name="range" /> <?php echo $lang["filter"]["range"]; ?><br />
                             <input title="<?php echo $lang["tips"]["keys"]; ?>" type="text" name="keywords" /> <?php echo $lang["filter"]["keys"]; ?><br />
@@ -136,6 +134,7 @@
                         </div>
                         <div class="parameters2">
                             <input title="<?php echo $lang["tips"]["worlds"]; ?>" type="text" name="worlds" /> <?php echo $lang["filter"]["worlds"]; ?><br />
+                            <input title="<?php echo $lang["tips"]["servers"]; ?>" type="text" name="servers" /> <?php echo $lang["filter"]["servers"]; ?><br />
                             <span title="<?php echo $lang["tips"]["dFrom"]; ?>"><input style="width: 95px" type="text" id="dateFrom" /><input style="width: 55px" type="text" id="timeFrom" /> <?php echo $lang["filter"]["dFrom"]; ?></span><br />
                             <span title="<?php echo $lang["tips"]["dTo"]; ?>"><input style="width: 95px" type="text" id="dateTo" /><input style="width: 55px" type="text" id="timeTo" /> <?php echo $lang["filter"]["dTo"]; ?></span><br />
                             <span title="<?php echo $lang["tips"]["block"]; ?>">
@@ -148,7 +147,6 @@
                             </div>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
@@ -159,7 +157,7 @@
                     <span id="resultsMin" style="border-radius: 20px;" class="minmax ui-state-default ui-corner-all minmax" title="<?php echo $lang["tips"]["hideResults"]; ?>"><span class="ui-icon ui-icon-carat-1-se"></span></span>
                     <?php echo $lang["results"]["title"]; ?>
                 </div>
-
+				
                 <div class="results">
                     <div class="ui-widget">
                         <div class="ui-state-highlight ui-corner-all searchError"> 
@@ -169,13 +167,10 @@
                     </div>
                 </div>
             </div>
-
         </div>
         
         <div class="footer">
         	<p>&copy; Oliver Woodings 2011</p>
         </div>
-    
     </body>
 </html>
-

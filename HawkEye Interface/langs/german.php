@@ -12,34 +12,36 @@
 					"title" => "HawkEye",
 					
 					"filter" => array("title" => "Filter-Optionen",
-									   "players" => "Spieler",
-									   "xyz" => "XYZ",
-									   "range" => "Reichweite",
-									   "keys" => "Stichwoerter",
-									   "worlds" => "Welten",
-									   "dFrom" => "Von Datum",
-									   "dTo" => "Bis Datum",
-									   "block" => "Block",
-									   "search" => "Suche",
-									   "exclude" => "Ausschluss-Filter",
-									   "selectall" => "Alles auswaehlen"),
+									  "players" => "Spieler",
+									  "xyz" => "XYZ",
+									  "range" => "Reichweite",
+									  "keys" => "Stichwoerter",
+									  "worlds" => "Welten",
+									  "servers" => "Server",
+									  "dFrom" => "Von Datum",
+									  "dTo" => "Bis Datum",
+									  "block" => "Block",
+									  "search" => "Suche",
+									  "exclude" => "Ausschluss-Filter",
+									  "selectall" => "Alles auswaehlen"),
 					
 					"tips" => array("hideFilter" => "Zeige / Verstecke Filter-Optionen",
-									   "hideResults" => "Zeige / Verstecke Ergebnisse",
-									   "actions" => "Aktionen die du suchen willst. Es muss mind. eine ausgewaehlt werden.",
-									   "password" => "Passwort um die Suche zu benutzen. Wird nur gebraucht wenn gesetzt.",
-									   "players" => "(Optional) Liste von Spieler nach denen gesucht werden soll, getrennt durch Kommas.",
-									   "xyz" => "(Optional) Koordinaten in dessen Umkreis du suchen willst",
-									   "range" => "(Optional) Suchreichweite um die Koordinaten",
-									   "keys" => "(Optional) Liste von Stichwoerter, getrennt durch Kommas.",
-									   "worlds" => "(Optional) Liste der Welten, getrennt durch Kommas. Leeres Feld entspricht alle Welten",
-									   "dFrom" => "(Optional) Start Zeit und Datum fuer Suchzeitraum",
-									   "dTo" => "(Optional) Ende Zeit und Datum fuer Suchzeitraum",
-									   "block" => "(Optional) Block nach dem gesucht wird bei 'Block zerstoert' und 'Block plaziert'",
-									   "reverse" => "Wenn diese Option aktiviert, wird der Log in chronologischer Reihenfolge angezeigt. Deaktiviere die Option zum Anzeigen von Chat-Protokollen",
-									   "exclude" => "(Optional) Liste der Stichwoerte die aus der Suche ausgeschlossen werden sollen, getrennt durch Kommas.",
-									   "selectall" => "Klicke hier um alle Aktionen an- oder abzuwaehlen"),
-									
+									"hideResults" => "Zeige / Verstecke Ergebnisse",
+									"actions" => "Aktionen die du suchen willst. Es muss mind. eine ausgewaehlt werden.",
+									"password" => "Passwort um die Suche zu benutzen. Wird nur gebraucht wenn gesetzt.",
+									"players" => "(Optional) Liste von Spielern, nach denen gesucht werden soll, getrennt durch Kommas.",
+									"xyz" => "(Optional) Koordinaten, in deren Umkreis du suchen willst",
+									"range" => "(Optional) Suchreichweite um die Koordinaten",
+									"keys" => "(Optional) Liste von Stichworten, getrennt durch Kommas.",
+									"worlds" => "(Optional) Liste der Welten, getrennt durch Kommas. Leeres Feld entspricht alle Welten",
+									"servers" => "(Optional) Liste der Server, getrennt durch Kommas. Leeres Feld entspricht alle Server",
+									"dFrom" => "(Optional) Start Zeit und Datum fuer Suchzeitraum",
+									"dTo" => "(Optional) Ende Zeit und Datum fuer Suchzeitraum",
+									"block" => "(Optional) Block nach dem gesucht wird bei 'Block zerstoert' und 'Block platziert'",
+									"reverse" => "Wenn diese Option aktiviert ist, wird der Log in chronologischer Reihenfolge angezeigt. Deaktiviere die Option zum Anzeigen von Chat-Protokollen",
+									"exclude" => "(Optional) Liste der Stichworte, die aus der Suche ausgeschlossen werden sollen, getrennt durch Kommas.",
+									"selectall" => "Klicke hier, um alle Aktionen an- oder abzuwaehlen"),
+					
 					"actions" => array("0" => "Block zerstoert",
 									   "1" => "Block plaziert",
 									   "2" => "Schild platziert",
@@ -78,32 +80,36 @@
 									   "35" => "Pilzwuchs",
 									   "36" => "Mob Kill",
 									   "37" => "Spawn Egg",
-									   "38" => "HeroChat",	
-									   "39" => "Entity geaendern",
+									   "38" => "HeroChat",
+									   "39" => "Entity geaendert",
 									   "40" => "Block-Bewohner geaendert",
 									   "41" => "Super-Pickaxe",
 									   "42" => "WorldEdit-Zerstoert",
-									   "43" => "WorldEdit-Plaziert"),
-
+									   "43" => "WorldEdit-Plaziert",
+									   "44" => "Feld zertreten",
+                                       "45" => "Block entzündet",
+									   "46" => "Fallender Block platziert"),
+					
 					"results" => array("title" => "Ergebnisse",
 									   "id" => "ID",
 									   "date" => "Datum",
 									   "player" => "Spieler",
 									   "action" => "Aktion",
 									   "world" => "Welt",
+									   "server" => "Server",
 									   "xyz" => "XYZ",
 									   "data" => "Daten"),
-									   
+					
 					"login" => array("password" => "Passwort: ",
-									   "login" => "Login"),
-
+									 "login" => "Login"),
+					
 					"messages" => array("clickTo" => "Klicke auf Suche um Ergenisse zu erhalten",
-									   "breakMe" => "Mach mich nicht kaputt!",
-									   "invalidPass" => "Falsches Passwort!",
-									   "noActions" => "Du musst mind. eine Aktion auswaehlen nach der gesucht werden soll!",
-									   "noResults" => "Keine Ergebnisse gefunden mit dieser Auswahl",
-									   "error" => "Fehler!",
-									   "notLoggedIn" => "Du bist nicht angemeldet!")
+										"breakMe" => "Mach mich nicht kaputt!",
+										"invalidPass" => "Falsches Passwort!",
+										"noActions" => "Du musst mind. eine Aktion auswaehlen nach der gesucht werden soll!",
+										"noResults" => "Keine Ergebnisse gefunden mit dieser Auswahl",
+										"error" => "Fehler!",
+										"notLoggedIn" => "Du bist nicht angemeldet!")
 					);
 	
 	//Convert foreign characters to entities
@@ -111,5 +117,4 @@
 	function ents(&$item, $key) {
 		$item = htmlentities($item);
 	}
-
 ?>

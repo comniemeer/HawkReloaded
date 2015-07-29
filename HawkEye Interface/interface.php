@@ -46,7 +46,7 @@
 	$data["range"] = intval($data["range"]);
 	$data["dateFrom"] = mysql_real_escape_string($data["dateFrom"]);
 	$data["dateTo"] = mysql_real_escape_string($data["dateTo"]);
-		
+	
 	//Get players
 	$players = array();
 	$res = mysql_query("SELECT * FROM `" . $hawkConfig["dbPlayerTable"] . "`");
@@ -57,6 +57,16 @@
 	while ($player = mysql_fetch_object($res))
 		$players[$player->player_id] = $player->player;
 	
+	//Get uuids
+	$uuids = array();
+	$res = mysql_query("SELECT * FROM `" . $hawkConfig["dbPlayerTable"] . "`");
+	if (!$res)
+		return error(mysql_error());
+	if (mysql_num_rows($res) == 0)
+		return error($lang["messages"]["noResults"]);
+	while ($player = mysql_fetch_object($res))
+		$uuids[$player->player_id] = $player->uuid;
+	
 	//Get worlds
 	$worlds = array();
 	$res = mysql_query("SELECT * FROM `" . $hawkConfig["dbWorldTable"] . "`");
@@ -66,6 +76,16 @@
 		return error($lang["messages"]["noResults"]);
 	while ($world = mysql_fetch_object($res))
 		$worlds[$world->world_id] = $world->world;
+	
+	//Get servers
+	$servers = array();
+	$res = mysql_query("SELECT * FROM `" . $hawkConfig["dbServerTable"] . "`");
+	if (!$res)
+		return error(mysql_error());
+	if (mysql_num_rows($res) == 0)
+		return error($lang["messages"]["noResults"]);
+	while ($server = mysql_fetch_object($res))
+		$servers[$server->server_id] = $server->server;
 	
 	$sql = "SELECT * FROM `" . $hawkConfig["dbTable"] . "` WHERE ";
 	$args = array();
@@ -81,6 +101,17 @@
 		else
 			return error($lang["messages"]["noResults"]);
 	}
+	if ($data["uuids"][0] != "") {
+		$uids = array();
+		foreach ($data["uuids"] as $key => $val)
+			foreach ($uuids as $key2 => $val2)
+				if (stristr($val2, $val))
+					array_push($uids, $key2);
+		if (count($uids) > 0)
+			array_push($args, "player_id IN (" . join(",", $uids) . ")");
+		else
+			return error($lang["messages"]["noResults"]);
+	}
 	if ($data["worlds"][0] != "") {
 		$wids = array();
 		foreach ($data["worlds"] as $key => $val)
@@ -89,6 +120,17 @@
 					array_push($wids, $key2);
 		if (count($wids) > 0)
 			array_push($args, "world_id IN (" . join(",", $wids) . ")");
+		else
+			return error($lang["messages"]["noResults"]);
+	}
+	if ($data["servers"][0] != "") {
+		$sids = array();
+		foreach ($data["servers"] as $key => $val)
+			foreach ($servers as $key2 => $val2)
+				if (stristr($val2, $val))
+					array_push($sids, $key2);
+		if (count($sids) > 0)
+			array_push($args, "server_id IN (" . join(",", $sids) . ")");
 		else
 			return error($lang["messages"]["noResults"]);
 	}
@@ -251,7 +293,7 @@
 		$action = str_replace(array_reverse(array_keys($lang["actions"])), array_reverse($lang["actions"]), $action);
 	
 		//Add to output row
-		array_push($row, $entry->data_id, $entry->timestamp, $players[$entry->player_id], $action, $worlds[$entry->world_id], round($entry->x, 1).",".round($entry->y, 1).",".round($entry->z, 1), $fdata);
+		array_push($row, $entry->data_id, $entry->timestamp, $players[$entry->player_id], $uuids[$entry->player_id], $action, $worlds[$entry->world_id], $servers[$entry->server_id], round($entry->x, 1).",".round($entry->y, 1).",".round($entry->z, 1), $fdata);
 		array_push($output["data"], $row);
 	}
 	

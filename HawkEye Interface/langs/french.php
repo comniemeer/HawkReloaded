@@ -17,11 +17,13 @@
 									  "range" => "Gamme",
 									  "keys" => "Mots-cl�s",
 									  "worlds" => "Mondes",
+									  "servers" => "Servers",
 									  "dFrom" => "Date d�but",
 									  "dTo" => "Date fin",
 									  "block" => "Block",
 									  "search" => "Rechercher",
-									  "exclude" => "Exclure les filtres"),
+									  "exclude" => "Exclure les filtres",
+									  "selectall" => "Select All"),
 					
 					"tips" => array("hideFilter" => "Afficher / Masquer les options de filtrage",
 									"hideResults" => "Afficher / Masquer les r�sultats",
@@ -32,12 +34,14 @@
 									"range" => "(Facultatif) Etendue des coordonn�es sp�cifi�es ci-dessus pour rechercher",
 									"keys" => "(Facultatif) Liste des mots-cl�s s�par�s par des virgules",
 									"worlds" => "(Facultatif) Liste des mondes s�par�s par des virgules. Laissez vide pour tous les mondes",
+									"servers" => "(Optional) List of servers seperated by commas. Leave blank for all servers",
 									"dFrom" => "(Facultatif) Date et heure de d�but de la p�riode de recherche",
 									"dTo" => "(Facultatif) Date et heure de fin de la p�riode de recherche",
 									"block" => "(Facultatif) Blocs � rechercher dans les �v�nements 'Bloc cass�' et 'Bloc pos�'",
 									"reverse" => "Si elle est coch�e, les r�sultats seront dans l'ordre chronologique inverse. D�cochez la case pour afficher les journaux de conversation",
-									"exclude" => "(Facultatif) liste des mots cl�s � exclure des r�sultats s�par�s par des virgules"),
-						
+									"exclude" => "(Facultatif) liste des mots cl�s � exclure des r�sultats s�par�s par des virgules",
+									"selectall" => "Click to select all actions, click again to deselect all"),
+					
 					"actions" => array("0" => "Bloc cass�",
 									   "1" => "Bloc pos�",
 									   "2" => "Panneau plac�",
@@ -78,8 +82,13 @@
 									   "37" => "Spawn Egg",
 									   "38" => "HeroChat",	
 									   "39" => "Entity Modify",
-                                                                           "40" => "Block Inhabit"),
-									   
+                                       "40" => "Block Inhabit",
+                                       "41" => "Super-Pickaxe",
+                                       "42" => "WorldEdit-Break",
+                                       "43" => "WorldEdit-Place",
+									   "44" => "Crop-Trample",
+                                       "45" => "Block-Ignite",
+									   "46" => "FallingBlock-Place"),
 					
 					"results" => array("title" => "R�sultats",
 									   "id" => "ID",
@@ -87,9 +96,10 @@
 									   "player" => "Joueur",
 									   "action" => "Action",
 									   "world" => "Monde",
+									   "server" => "Server",
 									   "xyz" => "XYZ",
 									   "data" => "Donn�es"),
-									   
+					
 					"login" => array("password" => "Mot de Passe: ",
 									 "login" => "Login"),
 					
@@ -100,7 +110,6 @@
 									    "noResults" => "Aucun r�sultat correspondant � ces options",
 									    "error" => "Erreur !",
 									    "notLoggedIn" => "Vous n'�tes pas connect� !")
-					
 					);
 	
 	//Convert foreign characters to entities
@@ -108,5 +117,4 @@
 	function ents(&$item, $key) {
 		$item = htmlentities($item);
 	}
-
 ?>

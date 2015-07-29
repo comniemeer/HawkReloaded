@@ -17,11 +17,13 @@
 									  "range" => "Radius",
 									  "keys" => "Trefwoorden",
 									  "worlds" => "Werelden",
+									  "servers" => "Servers", // Needs translation from a native speaker
 									  "dFrom" => "Start datum",
 									  "dTo" => "Eind datum",
 									  "block" => "Blok",
 									  "search" => "Zoek",
-									  "exclude" => "Omgekeerde"),
+									  "exclude" => "Omgekeerde",
+									  "selectall" => "Select All"), // Needs translation from a native speaker
 					
 					"tips" => array("hideFilter" => "Toon / Verberg filter opties",
 									"hideResults" => "Toon / Verberg Resultaten",
@@ -32,12 +34,14 @@
 									"range" => "(Optioneel) Radius rond de bovenstaande co�rdinaten om naar te zoeken",
 									"keys" => "(Optioneel) Lijst van trefwoorden gescheiden door een komma",
 									"worlds" => "(Optioneel) Lijst van de werelden, gescheiden door komma's. Leeg laten voor alle werelden",
+									"servers" => "Optional) List of servers seperated by commas. Leave blank for all servers", // Needs translation from a native speaker
 									"dFrom" => "(Optioneel) Begindatum/tijd van zoekperiode",
 									"dTo" => "(Optioneel) Einddatum/tijd van zoekperiode",
 									"block" => "(Optioneel) blok om naar te zoeken tijdens blok plaats/breek event",
 									"reverse" => "Indien aangevinkt, zal volgorde van de logs zijn in omgekeerde chronologische volgorde. Haal het vinkje weg voor het bekijken van chatlogs",
-									"exclude" => "(Optioneel) Lijst van trefwoorden om uit te sluiten van de resultaten gescheiden door komma's"),
-
+									"exclude" => "(Optioneel) Lijst van trefwoorden om uit te sluiten van de resultaten gescheiden door komma's",
+									"selectall" => "Click to select all actions, click again to deselect all"), // Needs translation from a native speaker
+					
 					"actions" => array("0" => "Blok breek",
 									   "1" => "Blok plaats",
 									   "2" => "Bord plaats",
@@ -78,20 +82,27 @@
 									   "37" => "Spawn Egg",
 									   "38" => "HeroChat",	
 									   "39" => "Entity Modify",
-                                                                           "40" => "Block Inhabit"),
-
+                                       "40" => "Block Inhabit",
+                                       "41" => "Super-Pickaxe",
+                                       "42" => "WorldEdit-Break",
+                                       "43" => "WorldEdit-Place",
+									   "44" => "Crop-Trample",
+                                       "45" => "Block-Ignite",
+									   "46" => "FallingBlock-Place"),
+					
 					"results" => array("title" => "Resultaten",
 									   "id" => "ID",
 									   "date" => "Datum",
 									   "player" => "Speler",
 									   "action" => "Actie",
 									   "world" => "Wereld",
+									   "server" => "Server",
 									   "xyz" => "XYZ",
 									   "data" => "Data"),
-									   
+					
 					"login" => array("password" => "Wachtwoord: ",
 									 "login" => "Login"),
-
+					
 					"messages" => array("clickTo" => "Klik op zoeken om gegevens op te halen",
 										"breakMe" => "Stop met het proberen me te breken!",
 										"invalidPass" => "Ongeldig wachtwoord!",
@@ -106,5 +117,4 @@
 	function ents(&$item, $key) {
 		$item = htmlentities($item);
 	}
-
 ?>

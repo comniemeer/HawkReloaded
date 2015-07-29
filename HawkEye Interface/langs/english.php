@@ -16,10 +16,12 @@
 					
 					"filter" => array("title" => "Filter Options",
 									  "players" => "Players",
+									  "uuids" => "UUIDs",
 									  "xyz" => "XYZ",
 									  "range" => "Range",
 									  "keys" => "Keywords",
 									  "worlds" => "Worlds",
+									  "servers" => "Servers",
 									  "dFrom" => "Date From",
 									  "dTo" => "Date To",
 									  "block" => "Block",
@@ -32,10 +34,12 @@
 									"actions" => "Actions to search for. You must select at least one",
 									"password" => "Password to use the browser. Required only if set",
 									"players" => "(Optional) List of players you wish to search for separated by commas",
+									"uuids" => "(Optional) List of uuids you wish to search for separated by commas",
 									"xyz" => "(Optional) Coordinates you wish to search around",
 									"range" => "(Optional) Range around the coords above to search for",
 									"keys" => "(Optional) List of keywords seperated by commas",
 									"worlds" => "(Optional) List of worlds seperated by commas. Leave blank for all worlds",
+									"servers" => "(Optional) List of servers seperated by commas. Leave blank for all servers",
 									"dFrom" => "(Optional) Time and date to start searching from",
 									"dTo" => "(Optional) Time and date to search up to",
 									"block" => "(Optional) Block to search for in 'Block Break' and 'Block Place' events",
@@ -90,16 +94,18 @@
 									   "44" => "Crop-Trample",
                                        "45" => "Block-Ignite",
 									   "46" => "FallingBlock-Place"),
-
+					
 					"results" => array("title" => "Results",
 									   "id" => "ID",
 									   "date" => "Date",
 									   "player" => "Player",
+									   "uuid" => "UUID",
 									   "action" => "Action",
 									   "world" => "World",
+									   "server" => "Server",
 									   "xyz" => "XYZ",
 									   "data" => "Data"),
-									   
+					
 					"login" => array("password" => "Password: ",
 									 "login" => "Login"),
 					
@@ -110,8 +116,6 @@
 									    "noResults" => "No results found matching those options",
 									    "error" => "Error!",
 									    "notLoggedIn" => "You are not logged in!")
-									  
-					
 					);
 	
 	//Convert foreign characters to entities
@@ -119,5 +123,4 @@
 	function ents(&$item, $key) {
 		$item = htmlentities($item);
 	}
-
 ?>

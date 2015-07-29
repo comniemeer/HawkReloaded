@@ -18,6 +18,7 @@
 					"dbTable" => "hawkeye",
 					"dbPlayerTable" => "hawk_players",
 					"dbWorldTable" => "hawk_worlds",
+					"dbServerTable" => "hawk_servers",
 					
 					//Set this to the password you want people to have to use to access the interface
 					//Leave blank for no password
