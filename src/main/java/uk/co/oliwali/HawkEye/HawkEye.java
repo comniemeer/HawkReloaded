@@ -138,7 +138,8 @@ public class HawkEye extends JavaPlugin {
 		
 		if (Config.BungeeCord) {
 			if (Config.ServerName == null || Config.ServerName.isEmpty()) {
-				Bukkit.getLogger().warning("BungeeCord server name fetching enabled, and server name is not set yet. Scheduling a name-update task.");
+				Util.info("BungeeCord server name fetching enabled, and server name is not set yet. Scheduling a name-update task.");
+				
 				BungeeServerNameTask bungeeServerNameTask = new BungeeServerNameTask();
 				
 				bungeeServerNameTask.runTaskTimer(this, 10 * 20L, 15 * 20L);

@@ -12,6 +12,7 @@ import org.bukkit.plugin.messaging.PluginMessageListener;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import uk.co.oliwali.HawkEye.util.Config;
+import uk.co.oliwali.HawkEye.util.Util;
 
 public class BungeeServerNameTask extends BukkitRunnable implements PluginMessageListener {
 	
@@ -19,7 +20,7 @@ public class BungeeServerNameTask extends BukkitRunnable implements PluginMessag
 	public void run() {
 		if(Bukkit.getOnlinePlayers().size() > 0) {
 			if (this.requestServerName() != null) {
-				Bukkit.getLogger().info("Server name updated, task is shutting down.");
+				Util.debug("Server name request sent, task is shutting down.");
 				this.cancel();
 			}
 		}
@@ -30,7 +31,7 @@ public class BungeeServerNameTask extends BukkitRunnable implements PluginMessag
 			return "";
 		}
 		
-		if (Config.ServerName != null) {
+		if (Config.ServerName != null && !Config.ServerName.isEmpty()) {
 			return Config.ServerName;
 		} else {
 			Player player = Bukkit.getOnlinePlayers().iterator().next(); // This will error if no player is online.
@@ -64,6 +65,8 @@ public class BungeeServerNameTask extends BukkitRunnable implements PluginMessag
     			
 				HawkEye.instance.getConfig().set("general.servername", Config.ServerName);
     			HawkEye.instance.saveConfig();
+    			
+				Util.info("Server name updated to '" + Config.ServerName + "'.");
             }
 		} catch (IOException e) {
 			e.printStackTrace();
