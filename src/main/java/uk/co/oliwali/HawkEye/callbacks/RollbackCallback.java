@@ -13,27 +13,28 @@ import uk.co.oliwali.HawkEye.util.Util;
  * @author oliverw92
  */
 public class RollbackCallback extends BaseCallback {
-
+	
 	private final PlayerSession session;
 	private final CommandSender sender;
 	private final RollbackType type;
-
+	
 	public RollbackCallback(PlayerSession session, RollbackType type) {
 		this.type = type;
 		this.session = session;
-		sender = session.getSender();
-		Util.sendMessage(sender, "&cSearching for matching results to rollback...");
+		this.sender = session.getSender();
+		
+		Util.sendMessage(this.sender, "&cSearching for matching results to rollback...");
 	}
-
+	
 	@Override
 	public void execute() {
-		session.setRollbackResults(results);
-		new Rollback(type, session);
+		this.session.setRollbackResults(results);
+		
+		new Rollback(this.type, this.session);
 	}
-
+	
 	@Override
 	public void error(SearchError error, String message) {
-		Util.sendMessage(session.getSender(), message);
+		Util.sendMessage(this.session.getSender(), message);
 	}
-
 }
